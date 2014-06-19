@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Course Project: Getting and Cleaning Data </title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Course Project: Getting and Cleaning Data </h1>
+
+<h2>MERGING</h2>
+
+<p>We first read the test data into a data frame &#39;testd&#39; and the training data into
+&#39;traind&#39;. Both data frames are merged with &#39;rbind&#39; into data frame &#39;mergedset&#39;</p>
+
+<h2>EXTRACTING MEAN AND STD</h2>
+
+<p>We read the measurement names into a data frame &#39;features&#39;. Using grep
+we find the rows with &#39;mean&#39; and &#39;std&#39; in the feature names and save it 
+to a data frame &#39;ftmean&#39;. </p>
+
+<p>The new subset &#39;meanset&#39; with just the mean and standard deviation measurements is created 
+using &#39;ftmean&#39; as column numbers to subset the massive &#39;mergedset&#39;.</p>
+
+<h2>NAMING</h2>
+
+<p>We first set the column names of the measurements in &#39;meanset&#39; by subsetting &#39;features&#39;
+with &#39;ftmean&#39;. </p>
+
+<p>We read the subject ids into a data frame &#39;subject_test&#39; and activity ids are read 
+into a data frame &#39;activity_test&#39;. Using cbind these two are merged into &#39;testid&#39;. Similarly subject and 
+activity ids for the training data are read and merged into &#39;trainid&#39;.</p>
+
+<p>Both these data frames are merged into &#39;mergedids&#39; with rbind and their column names 
+set to &#39;subjectid&#39; and &#39;activityid&#39;.</p>
+
+<p>Finally these are added to the &#39;meanset&#39; data frame using cbind.</p>
+
+<p>The &#39;activityid&#39; was read in as a factor and to give it a descriptive name we need to
+change the levels. We read in the activity labels into a data frame &#39;act_labels&#39; and use that 
+to set the levels of &#39;meanset&#39;</p>
+
+<h2>TIDYSET</h2>
+
+<p>The data.table package is really useful for fast grouping so let&#39;s load that up and change 
+&#39;meanset&#39; to a data table. Next we create &#39;tidyset&#39; with the mean of each column grouped first
+by subject and then by activity.</p>
+
+</body>
+
+</html>
+
