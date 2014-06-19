@@ -45,3 +45,7 @@ The data.table package is really useful for fast grouping so let's load that up 
 by subject and then by activity.
 
 
+## WRITING CSV
+
+The 'tidyset.csv' file is created with write.csv
+

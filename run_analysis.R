@@ -46,3 +46,7 @@ library(data.table)
 meanset <- data.table(meanset)
 tidyset <- meanset[,lapply(.SD, mean), by=list(subjectid,activityid)]
 
+
+# WRITING CSV
+
+write.csv(tidyset, file="tidyset.csv")
